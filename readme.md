@@ -1,2 +1,2 @@
 # Ebook Design
-![db_design] (https://github.com/MicheleTsigab/Ebook/blob/main/ebookdb.png)
+<img src="https://github.com/MicheleTsigab/Ebook/blob/main/ebookdb.png"/>
