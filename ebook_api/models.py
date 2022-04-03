@@ -1,19 +1,38 @@
+from cgi import print_exception
+from distutils.command.config import LANG_EXT
+from turtle import title
 from django.db import models
-
+from django.contrib.auth.models import User
 class customer(models.Model):
-    pass
+    customer=models.OneToOneField(User,on_delete=models.CASCADE)
+    
 class author(models.Model):
-    pass
+    customer=models.OneToOneField(User,on_delete=models.CASCADE)
 class ebook(models.Model):
-    pass
+    title=models.CharField(max_length=100)
+    year=models.DateField()
+    price=models.FloatField() 
+    path=models.FileField() 
+    lang=models.CharField(max_length=30) 
+    genre=models.ManyToManyField('genre',on_delete=models.CASCADE)
 class ebook_authored(models.Model):
-    pass
+    ebook=models.ForeignKey(ebook,on_delete=models.CASCADE)
+    author=models.ForeignKey(author,on_delete=models.CASCADE)
+    date=models.DateField()
 class ebook_bought(models.Model):
-    pass
+    ebook=models.ForeignKey(ebook)
+    customer=models.ForeignKey(customer,on_delete=models.CASCADE)
+    date=models.DateField()
 class genre(models.Model):
-    pass
+    genre=models.CharField(max_length=50)
+    sub_genre=models.CharField(max_length=50)
+
 class reviews(models.Model):
-    pass
+    customer=models.ForeignKey(customer,on_delete=models.CASCADE)
+    ebook=models.ForeignKey(ebook,on_delete=models.CASCADE)
+    rate=models.SmallIntegerField()
+    date=models.DateField()
+    reviews=models.TextField()
 class discounts(models.Model):
-    pass
+    discount=models.FloatField()
 
