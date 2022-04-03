@@ -4,14 +4,14 @@ from turtle import title
 from django.db import models
 from django.contrib.auth.models import User
 class customer(models.Model):
-    customer=models.OneToOneField(User,on_delete=models.CASCADE)
-    
+    customer=models.OneToOneField(User,on_delete=models.CASCADE)  
 class author(models.Model):
     customer=models.OneToOneField(User,on_delete=models.CASCADE)
 class ebook(models.Model):
+    cover=models.ImageField()
     title=models.CharField(max_length=100)
     year=models.DateField()
-    price=models.FloatField() 
+    price=models.FloatEbookApiConfigField() 
     path=models.FileField() 
     lang=models.CharField(max_length=30) 
     genre=models.ManyToManyField('genre',on_delete=models.CASCADE)
