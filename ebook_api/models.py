@@ -15,6 +15,8 @@ class ebook(models.Model):
     path=models.FileField() 
     lang=models.CharField(max_length=30) 
     genre=models.ManyToManyField('genre',on_delete=models.CASCADE)
+    def __str__(self):
+        return self.title
 class ebook_authored(models.Model):
     ebook=models.ForeignKey(ebook,on_delete=models.CASCADE)
     author=models.ForeignKey(author,on_delete=models.CASCADE)
