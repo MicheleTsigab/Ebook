@@ -1,6 +1,6 @@
-from cgi import print_exception
-from distutils.command.config import LANG_EXT
-from turtle import title
+#from cgi import print_exception
+#from distutils.command.config import LANG_EXT
+#from turtle import title
 from django.db import models
 from django.contrib.auth.models import User
 class customer(models.Model):
@@ -11,10 +11,10 @@ class ebook(models.Model):
     cover=models.ImageField()
     title=models.CharField(max_length=100)
     year=models.DateField(auto_now_add=True)
-    price=models.FloatEbookApiConfigField() 
+    price=models.FloatField() 
     path=models.FileField() 
     lang=models.CharField(max_length=30) 
-    genre=models.ManyToManyField('genre',on_delete=models.CASCADE)
+    genre=models.ManyToManyField('genre')
     def __str__(self):
         return self.title
 class ebook_authored(models.Model):
@@ -22,7 +22,7 @@ class ebook_authored(models.Model):
     author=models.ForeignKey(author,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add=True)
 class ebook_bought(models.Model):
-    ebook=models.ForeignKey(ebook)
+    ebook=models.ForeignKey(ebook,on_delete=models.CASCADE)
     customer=models.ForeignKey(customer,on_delete=models.CASCADE)
     date=models.DateField(auto_now_add=True)
 class genre(models.Model):
