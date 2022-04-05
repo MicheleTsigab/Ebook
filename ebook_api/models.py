@@ -40,7 +40,7 @@ class genre(models.Model):
     sub_genre=models.CharField(max_length=50)
     def __str__(self):
         return self.genre
-class reviews(models.Model):
+class review(models.Model):
     customer=models.ForeignKey(customer,on_delete=models.CASCADE)
     ebook=models.ForeignKey(ebook,on_delete=models.CASCADE)
     rate=models.SmallIntegerField(validators=[MaxValueValidator(5), MinValueValidator(1)])
