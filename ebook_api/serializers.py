@@ -5,6 +5,7 @@ class userserializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=['username','first_name','last_name','email','date_joined']
+        #fields='__all__'
 class ebookserializer(serializers.ModelSerializer):
     class Meta:
         model=ebook
@@ -19,12 +20,14 @@ class authorserializer(serializers.ModelSerializer):
     author=userserializer()
     class Meta:
         model=author
-        fields=['author','authored_ebooks']
+        fields=['id','author','authored_ebooks']
         #fields='__all__'
 class authored_ebookserializer(serializers.ModelSerializer):
+    ebook=ebookserializer()
+    author=authorserializer()
     class Meta:
         model=authored_ebook
-        fields=['__all__']
+        fields=['ebook','author','date']
 class bought_ebookserializer(serializers.ModelSerializer):
     class Meta:
         model=bought_ebook
