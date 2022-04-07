@@ -20,7 +20,7 @@ class authorserializer(serializers.ModelSerializer):
     author=userserializer()
     class Meta:
         model=author
-        fields=['id','author','authored_ebooks']
+        fields=['id','author']
         #fields='__all__'
 class authored_ebookserializer(serializers.ModelSerializer):
     ebook=ebookserializer()
